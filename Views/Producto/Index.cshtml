@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MvcHouseofg.Models.PRODUCTOS>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="container">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table col-lg-12">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                Stock
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PROD_ID)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.PROD_NOMBRE)
+            </td>
+            <td>
+                 @Html.DisplayFor(modelItem => item.PROD_PRECIO)
+            </td>
+            <td>
+                 @Html.DisplayFor(modelItem => item.PROD_STOCK)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.PROD_ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PROD_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PROD_ID })
+            </td>
+        </tr>
+    }
+
+    </table>
+
+    @Html.ActionLink("Volver al menu", "../Home/Admin")
+
+</div>

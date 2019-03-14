@@ -1,0 +1,122 @@
+﻿@model  MvcHouseofg.Models.FichaProducto
+@{
+    ViewBag.Title = "Product";
+}
+<head>
+<link href="@Url.Content("~/Content/themes/base/shop-item.css")" rel="stylesheet" type="text/css" />
+</head> 
+
+<!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+            <div class="row" >
+            <div class="col-lg-12" margin:100px>
+                <h1 class="page-header">House of G
+                
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="Index">Inicio</a></li>
+                    <li class="active">Productos</li>
+                </ol>
+            </div>
+        </div>
+
+           
+ 
+             <div class="col-md-3">
+                <div class="list-group">
+                    <a href="../Catalogo" class="list-group-item">Productos</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="/Imagenes/@Model.producto.PROD_IMAGEN " width="800" height="300" alt="">
+                    <div class="caption-full">
+                        <h4 class="pull-right">@String.Format("{0:c}",ViewData.Model.producto.PROD_PRECIO)</h4>
+                        <h4><a href="#">@ViewData.Model.producto.PROD_NOMBRE</a>
+                        </h4>
+                        <p>Caracteristicas.</p>
+                        <p>@ViewData.Model.producto.PROD_DESCRIPCIONCOMPLETA</p>
+                        <p>@Html.ActionLink("Agregar al carro", "../Carrito/AgregarCarrito", new { id = Model.producto.PROD_ID }, null)</p>
+                    </div>
+                    <div class="ratings">
+                        <span class="pull-right">@Model.valoracion.Count Comentario(s)</span>
+                        <p>
+                            <span>@Model.prom_val.ToString("0.0") Estrellas</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="well">
+
+                 
+                            <div class="text-right">
+                            @using (Html.BeginForm("Valorar", "Valoracion", FormMethod.Post,  new { enctype = "multipart/form-data" }))
+                            {
+                            @Html.ValidationSummary(true)
+                                <div>
+                                                Estrellas: @{
+                                   List<SelectListItem> listItems = new List<SelectListItem>();
+                                   listItems.Add(new SelectListItem
+                                        {
+                                            Text = "1",
+                                            Value = "1"
+                                        });
+                                   listItems.Add(new SelectListItem
+                                        {
+                                            Text = "2",
+                                            Value = "2",
+                                            Selected = true
+                                        });
+                                   listItems.Add(new SelectListItem
+                                        {
+                                            Text = "3",
+                                            Value = "3"
+                                        });
+                                   listItems.Add(new SelectListItem
+                                   {
+                                       Text = "4",
+                                       Value = "4"
+                                   });
+                                   listItems.Add(new SelectListItem
+                                   {
+                                       Text = "5",
+                                       Value = "5"
+                                   });
+                                    }
+
+                                    @Html.DropDownListFor(model => model.val.VAL_PUNTAJE, listItems, "-- Select Status --")
+                                </div>
+
+                                <div>
+                                @Html.TextAreaFor(model => model.val.VAL_COMENTARIO)
+                                </div>
+                                @*@Html.ActionLink("Valorar", "Valoracion", new { comentario = Model.val.VAL_COMENTARIO, puntaje = Model.val.VAL_PUNTAJE })*@
+
+                                <input type="submit" value="Dejar comentario" />
+                            }
+                                @*<a href="" class="btn btn-success">Deja un comentario...</a>*@
+                            </div>
+                        
+                    
+                    <hr>
+                    @foreach (var item in Model.valoracion)
+                    {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span>Usuario: @item.USU_ID</span><br />
+                            <span>Valoracion: @item.VAL_PUNTAJE Estrellas</span>                            
+                           <!-- <span class="pull-right">10 days ago</span> -->
+                            <p>Comentario: @item.VAL_COMENTARIO</p>
+                        </div>
+                    </div>
+                    }
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->     

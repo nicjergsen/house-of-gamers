@@ -1,0 +1,71 @@
+﻿@model MvcHouseofg.Models.USUARIOS
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="container">
+
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>USUARIOS</legend>
+
+        @Html.HiddenFor(model => model.USU_ID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.USU_NOMBRE)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.USU_NOMBRE)
+            @Html.ValidationMessageFor(model => model.USU_NOMBRE)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.USU_APELLIDO)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.USU_APELLIDO)
+            @Html.ValidationMessageFor(model => model.USU_APELLIDO)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.USU_DIRECCION)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.USU_DIRECCION)
+            @Html.ValidationMessageFor(model => model.USU_DIRECCION)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.USU_EMAIL)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.USU_EMAIL)
+            @Html.ValidationMessageFor(model => model.USU_EMAIL)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.USU_CIUDAD)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.USU_CIUDAD)
+            @Html.ValidationMessageFor(model => model.USU_CIUDAD)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "../Home/Perfil")
+</div>
+</div>

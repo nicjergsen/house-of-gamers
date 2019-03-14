@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="houseofgModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="houseofgModelStoreContainer">
+    <EntitySet Name="AMIGOS" EntityType="houseofgModel.Store.AMIGOS" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CUENTAS" EntityType="houseofgModel.Store.CUENTAS" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DETALLES" EntityType="houseofgModel.Store.DETALLES" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PEDIDOS" EntityType="houseofgModel.Store.PEDIDOS" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PRODUCTOS" EntityType="houseofgModel.Store.PRODUCTOS" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="houseofgModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TIPOS_CUENTA" EntityType="houseofgModel.Store.TIPOS_CUENTA" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="USUARIOS" EntityType="houseofgModel.Store.USUARIOS" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VALORACIONES" EntityType="houseofgModel.Store.VALORACIONES" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_AMIGOS_AGREGAN_USUARIOS" Association="houseofgModel.Store.FK_AMIGOS_AGREGAN_USUARIOS">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="AMIGOS" EntitySet="AMIGOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CUENTAS_CONTIENEN_TIPOS_CU" Association="houseofgModel.Store.FK_CUENTAS_CONTIENEN_TIPOS_CU">
+      <End Role="TIPOS_CUENTA" EntitySet="TIPOS_CUENTA" />
+      <End Role="CUENTAS" EntitySet="CUENTAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CUENTAS_CREAN_USUARIOS" Association="houseofgModel.Store.FK_CUENTAS_CREAN_USUARIOS">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="CUENTAS" EntitySet="CUENTAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLES_GENERAN_PRODUCTO" Association="houseofgModel.Store.FK_DETALLES_GENERAN_PRODUCTO">
+      <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+      <End Role="DETALLES" EntitySet="DETALLES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLES_POSEE_PEDIDOS" Association="houseofgModel.Store.FK_DETALLES_POSEE_PEDIDOS">
+      <End Role="PEDIDOS" EntitySet="PEDIDOS" />
+      <End Role="DETALLES" EntitySet="DETALLES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PEDIDOS_REALIZA_USUARIOS" Association="houseofgModel.Store.FK_PEDIDOS_REALIZA_USUARIOS">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="PEDIDOS" EntitySet="PEDIDOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VALORACI_REALIZAN_USUARIOS" Association="houseofgModel.Store.FK_VALORACI_REALIZAN_USUARIOS">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="VALORACIONES" EntitySet="VALORACIONES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VALORACI_TIENEN_PRODUCTO" Association="houseofgModel.Store.FK_VALORACI_TIENEN_PRODUCTO">
+      <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+      <End Role="VALORACIONES" EntitySet="VALORACIONES" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AMIGOS">
+    <Key>
+      <PropertyRef Name="AMI_ID" />
+    </Key>
+    <Property Name="AMI_ID" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="USU_ID" Type="varchar" Nullable="false" MaxLength="16" />
+  </EntityType>
+  <EntityType Name="CUENTAS">
+    <Key>
+      <PropertyRef Name="CUE_ID" />
+    </Key>
+    <Property Name="CUE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="USU_ID" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="TIC_ID" Type="int" Nullable="false" />
+    <Property Name="CUE_PASSWORD" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="CUE_ESTADO" Type="int" />
+  </EntityType>
+  <EntityType Name="DETALLES">
+    <Key>
+      <PropertyRef Name="DET_ID" />
+    </Key>
+    <Property Name="DET_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PROD_ID" Type="int" Nullable="false" />
+    <Property Name="PED_ID" Type="int" Nullable="false" />
+    <Property Name="DET_CANTIDAD" Type="int" Nullable="false" />
+    <Property Name="DET_PAGADO" Type="int" />
+  </EntityType>
+  <EntityType Name="PEDIDOS">
+    <Key>
+      <PropertyRef Name="PED_ID" />
+    </Key>
+    <Property Name="PED_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="USU_ID" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="PED_FECHA" Type="datetime" Nullable="false" />
+    <Property Name="PED_ESTADO" Type="int" />
+  </EntityType>
+  <EntityType Name="PRODUCTOS">
+    <Key>
+      <PropertyRef Name="PROD_ID" />
+    </Key>
+    <Property Name="PROD_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PROD_DISPONIBLE" Type="int" />
+    <Property Name="PROD_STOCK" Type="int" Nullable="false" />
+    <Property Name="PROD_IMAGEN" Type="varchar" MaxLength="500" />
+    <Property Name="PROD_DESCRIPCIONCORTA" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="PROD_PRECIO" Type="int" Nullable="false" />
+    <Property Name="PROD_DESCRIPCIONCOMPLETA" Type="varchar" MaxLength="300" />
+    <Property Name="PROD_NOMBRE" Type="varchar" Nullable="false" MaxLength="70" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TIPOS_CUENTA">
+    <Key>
+      <PropertyRef Name="TIC_ID" />
+    </Key>
+    <Property Name="TIC_ID" Type="int" Nullable="false" />
+    <Property Name="TIC_NOMBRE" Type="varchar" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="USU_ID" />
+    </Key>
+    <Property Name="USU_ID" Type="varchar" Nullable="false" MaxLength="16" />
+    <Property Name="USU_NOMBRE" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="USU_APELLIDO" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="USU_DIRECCION" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="USU_EMAIL" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="USU_CIUDAD" Type="varchar" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="VALORACIONES">
+    <Key>
+      <PropertyRef Name="VAL_ID" />
+    </Key>
+    <Property Name="VAL_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PROD_ID" Type="int" />
+    <Property Name="USU_ID" Type="varchar" MaxLength="16" />
+    <Property Name="VAL_PUNTAJE" Type="int" Nullable="false" />
+    <Property Name="VAL_COMENTARIO" Type="varchar" Nullable="false" MaxLength="500" />
+  </EntityType>
+  <Association Name="FK_AMIGOS_AGREGAN_USUARIOS">
+    <End Role="USUARIOS" Type="houseofgModel.Store.USUARIOS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AMIGOS" Type="houseofgModel.Store.AMIGOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="USU_ID" />
+      </Principal>
+      <Dependent Role="AMIGOS">
+        <PropertyRef Name="USU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CUENTAS_CONTIENEN_TIPOS_CU">
+    <End Role="TIPOS_CUENTA" Type="houseofgModel.Store.TIPOS_CUENTA" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CUENTAS" Type="houseofgModel.Store.CUENTAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPOS_CUENTA">
+        <PropertyRef Name="TIC_ID" />
+      </Principal>
+      <Dependent Role="CUENTAS">
+        <PropertyRef Name="TIC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CUENTAS_CREAN_USUARIOS">
+    <End Role="USUARIOS" Type="houseofgModel.Store.USUARIOS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CUENTAS" Type="houseofgModel.Store.CUENTAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="USU_ID" />
+      </Principal>
+      <Dependent Role="CUENTAS">
+        <PropertyRef Name="USU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLES_GENERAN_PRODUCTO">
+    <End Role="PRODUCTOS" Type="houseofgModel.Store.PRODUCTOS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DETALLES" Type="houseofgModel.Store.DETALLES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTOS">
+        <PropertyRef Name="PROD_ID" />
+      </Principal>
+      <Dependent Role="DETALLES">
+        <PropertyRef Name="PROD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLES_POSEE_PEDIDOS">
+    <End Role="PEDIDOS" Type="houseofgModel.Store.PEDIDOS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DETALLES" Type="houseofgModel.Store.DETALLES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEDIDOS">
+        <PropertyRef Name="PED_ID" />
+      </Principal>
+      <Dependent Role="DETALLES">
+        <PropertyRef Name="PED_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PEDIDOS_REALIZA_USUARIOS">
+    <End Role="USUARIOS" Type="houseofgModel.Store.USUARIOS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PEDIDOS" Type="houseofgModel.Store.PEDIDOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="USU_ID" />
+      </Principal>
+      <Dependent Role="PEDIDOS">
+        <PropertyRef Name="USU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VALORACI_REALIZAN_USUARIOS">
+    <End Role="USUARIOS" Type="houseofgModel.Store.USUARIOS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VALORACIONES" Type="houseofgModel.Store.VALORACIONES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="USU_ID" />
+      </Principal>
+      <Dependent Role="VALORACIONES">
+        <PropertyRef Name="USU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VALORACI_TIENEN_PRODUCTO">
+    <End Role="PRODUCTOS" Type="houseofgModel.Store.PRODUCTOS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VALORACIONES" Type="houseofgModel.Store.VALORACIONES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTOS">
+        <PropertyRef Name="PROD_ID" />
+      </Principal>
+      <Dependent Role="VALORACIONES">
+        <PropertyRef Name="PROD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

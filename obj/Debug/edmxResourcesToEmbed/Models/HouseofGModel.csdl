@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="houseofgModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="houseofgEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AMIGOS" EntityType="houseofgModel.AMIGOS" />
+    <EntitySet Name="CUENTAS" EntityType="houseofgModel.CUENTAS" />
+    <EntitySet Name="DETALLES" EntityType="houseofgModel.DETALLES" />
+    <EntitySet Name="PEDIDOS" EntityType="houseofgModel.PEDIDOS" />
+    <EntitySet Name="PRODUCTOS" EntityType="houseofgModel.PRODUCTOS" />
+    <EntitySet Name="sysdiagrams" EntityType="houseofgModel.sysdiagrams" />
+    <EntitySet Name="TIPOS_CUENTA" EntityType="houseofgModel.TIPOS_CUENTA" />
+    <EntitySet Name="USUARIOS" EntityType="houseofgModel.USUARIOS" />
+    <EntitySet Name="VALORACIONES" EntityType="houseofgModel.VALORACIONES" />
+    <AssociationSet Name="FK_AMIGOS_AGREGAN_USUARIOS" Association="houseofgModel.FK_AMIGOS_AGREGAN_USUARIOS">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="AMIGOS" EntitySet="AMIGOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CUENTAS_CONTIENEN_TIPOS_CU" Association="houseofgModel.FK_CUENTAS_CONTIENEN_TIPOS_CU">
+      <End Role="TIPOS_CUENTA" EntitySet="TIPOS_CUENTA" />
+      <End Role="CUENTAS" EntitySet="CUENTAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CUENTAS_CREAN_USUARIOS" Association="houseofgModel.FK_CUENTAS_CREAN_USUARIOS">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="CUENTAS" EntitySet="CUENTAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLES_GENERAN_PRODUCTO" Association="houseofgModel.FK_DETALLES_GENERAN_PRODUCTO">
+      <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+      <End Role="DETALLES" EntitySet="DETALLES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLES_POSEE_PEDIDOS" Association="houseofgModel.FK_DETALLES_POSEE_PEDIDOS">
+      <End Role="PEDIDOS" EntitySet="PEDIDOS" />
+      <End Role="DETALLES" EntitySet="DETALLES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PEDIDOS_REALIZA_USUARIOS" Association="houseofgModel.FK_PEDIDOS_REALIZA_USUARIOS">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="PEDIDOS" EntitySet="PEDIDOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VALORACI_TIENEN_PRODUCTO" Association="houseofgModel.FK_VALORACI_TIENEN_PRODUCTO">
+      <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+      <End Role="VALORACIONES" EntitySet="VALORACIONES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VALORACI_REALIZAN_USUARIOS" Association="houseofgModel.FK_VALORACI_REALIZAN_USUARIOS">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="VALORACIONES" EntitySet="VALORACIONES" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AMIGOS">
+    <Key>
+      <PropertyRef Name="AMI_ID" />
+    </Key>
+    <Property Name="AMI_ID" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Name="USU_ID" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="USUARIOS" Relationship="houseofgModel.FK_AMIGOS_AGREGAN_USUARIOS" FromRole="AMIGOS" ToRole="USUARIOS" />
+  </EntityType>
+  <EntityType Name="CUENTAS">
+    <Key>
+      <PropertyRef Name="CUE_ID" />
+    </Key>
+    <Property Name="CUE_ID" Type="Int32" Nullable="false" />
+    <Property Name="USU_ID" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Name="TIC_ID" Type="Int32" Nullable="false" />
+    <Property Name="CUE_PASSWORD" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Name="CUE_ESTADO" Type="Int32" />
+    <NavigationProperty Name="TIPOS_CUENTA" Relationship="houseofgModel.FK_CUENTAS_CONTIENEN_TIPOS_CU" FromRole="CUENTAS" ToRole="TIPOS_CUENTA" />
+    <NavigationProperty Name="USUARIOS" Relationship="houseofgModel.FK_CUENTAS_CREAN_USUARIOS" FromRole="CUENTAS" ToRole="USUARIOS" />
+  </EntityType>
+  <EntityType Name="DETALLES">
+    <Key>
+      <PropertyRef Name="DET_ID" />
+    </Key>
+    <Property Name="DET_ID" Type="Int32" Nullable="false" />
+    <Property Name="PROD_ID" Type="Int32" Nullable="false" />
+    <Property Name="PED_ID" Type="Int32" Nullable="false" />
+    <Property Name="DET_CANTIDAD" Type="Int32" Nullable="false" />
+    <Property Name="DET_PAGADO" Type="Int32" />
+    <NavigationProperty Name="PRODUCTOS" Relationship="houseofgModel.FK_DETALLES_GENERAN_PRODUCTO" FromRole="DETALLES" ToRole="PRODUCTOS" />
+    <NavigationProperty Name="PEDIDOS" Relationship="houseofgModel.FK_DETALLES_POSEE_PEDIDOS" FromRole="DETALLES" ToRole="PEDIDOS" />
+  </EntityType>
+  <EntityType Name="PEDIDOS">
+    <Key>
+      <PropertyRef Name="PED_ID" />
+    </Key>
+    <Property Name="PED_ID" Type="Int32" Nullable="false" />
+    <Property Name="USU_ID" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Name="PED_FECHA" Type="DateTime" Nullable="false" />
+    <Property Name="PED_ESTADO" Type="Int32" />
+    <NavigationProperty Name="DETALLES" Relationship="houseofgModel.FK_DETALLES_POSEE_PEDIDOS" FromRole="PEDIDOS" ToRole="DETALLES" />
+    <NavigationProperty Name="USUARIOS" Relationship="houseofgModel.FK_PEDIDOS_REALIZA_USUARIOS" FromRole="PEDIDOS" ToRole="USUARIOS" />
+  </EntityType>
+  <EntityType Name="PRODUCTOS">
+    <Key>
+      <PropertyRef Name="PROD_ID" />
+    </Key>
+    <Property Name="PROD_ID" Type="Int32" Nullable="false" />
+    <Property Name="PROD_DISPONIBLE" Type="Int32" Nullable="false" />
+    <Property Name="PROD_STOCK" Type="Int32" Nullable="false" />
+    <Property Name="PROD_IMAGEN" Type="String" Nullable="true" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="PROD_DESCRIPCIONCORTA" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PROD_PRECIO" Type="Int32" Nullable="false" />
+    <Property Name="PROD_DESCRIPCIONCOMPLETA" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+    <Property Name="PROD_NOMBRE" Type="String" MaxLength="70" Unicode="false" FixedLength="false" Nullable="false" />
+    <NavigationProperty Name="DETALLES" Relationship="houseofgModel.FK_DETALLES_GENERAN_PRODUCTO" FromRole="PRODUCTOS" ToRole="DETALLES" />
+    <NavigationProperty Name="VALORACIONES" Relationship="houseofgModel.FK_VALORACI_TIENEN_PRODUCTO" FromRole="PRODUCTOS" ToRole="VALORACIONES" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TIPOS_CUENTA">
+    <Key>
+      <PropertyRef Name="TIC_ID" />
+    </Key>
+    <Property Name="TIC_ID" Type="Int32" Nullable="false" />
+    <Property Name="TIC_NOMBRE" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="CUENTAS" Relationship="houseofgModel.FK_CUENTAS_CONTIENEN_TIPOS_CU" FromRole="TIPOS_CUENTA" ToRole="CUENTAS" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="USU_ID" />
+    </Key>
+    <Property Name="USU_ID" Type="String" Nullable="false" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Name="USU_NOMBRE" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="USU_APELLIDO" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="USU_DIRECCION" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="USU_EMAIL" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="USU_CIUDAD" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="AMIGOS" Relationship="houseofgModel.FK_AMIGOS_AGREGAN_USUARIOS" FromRole="USUARIOS" ToRole="AMIGOS" />
+    <NavigationProperty Name="CUENTAS" Relationship="houseofgModel.FK_CUENTAS_CREAN_USUARIOS" FromRole="USUARIOS" ToRole="CUENTAS" />
+    <NavigationProperty Name="PEDIDOS" Relationship="houseofgModel.FK_PEDIDOS_REALIZA_USUARIOS" FromRole="USUARIOS" ToRole="PEDIDOS" />
+    <NavigationProperty Name="VALORACIONES" Relationship="houseofgModel.FK_VALORACI_REALIZAN_USUARIOS" FromRole="USUARIOS" ToRole="VALORACIONES" />
+  </EntityType>
+  <EntityType Name="VALORACIONES">
+    <Key>
+      <PropertyRef Name="VAL_ID" />
+    </Key>
+    <Property Name="VAL_ID" Type="Int32" Nullable="false" />
+    <Property Name="PROD_ID" Type="Int32" />
+    <Property Name="USU_ID" Type="String" MaxLength="16" Unicode="false" FixedLength="false" />
+    <Property Name="VAL_PUNTAJE" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PRODUCTOS" Relationship="houseofgModel.FK_VALORACI_TIENEN_PRODUCTO" FromRole="VALORACIONES" ToRole="PRODUCTOS" />
+    <NavigationProperty Name="USUARIOS" Relationship="houseofgModel.FK_VALORACI_REALIZAN_USUARIOS" FromRole="VALORACIONES" ToRole="USUARIOS" />
+    <Property Type="String" Name="VAL_COMENTARIO" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_AMIGOS_AGREGAN_USUARIOS">
+    <End Role="USUARIOS" Type="houseofgModel.USUARIOS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AMIGOS" Type="houseofgModel.AMIGOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="USU_ID" />
+      </Principal>
+      <Dependent Role="AMIGOS">
+        <PropertyRef Name="USU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CUENTAS_CONTIENEN_TIPOS_CU">
+    <End Role="TIPOS_CUENTA" Type="houseofgModel.TIPOS_CUENTA" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CUENTAS" Type="houseofgModel.CUENTAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPOS_CUENTA">
+        <PropertyRef Name="TIC_ID" />
+      </Principal>
+      <Dependent Role="CUENTAS">
+        <PropertyRef Name="TIC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CUENTAS_CREAN_USUARIOS">
+    <End Role="USUARIOS" Type="houseofgModel.USUARIOS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CUENTAS" Type="houseofgModel.CUENTAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="USU_ID" />
+      </Principal>
+      <Dependent Role="CUENTAS">
+        <PropertyRef Name="USU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLES_GENERAN_PRODUCTO">
+    <End Role="PRODUCTOS" Type="houseofgModel.PRODUCTOS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DETALLES" Type="houseofgModel.DETALLES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTOS">
+        <PropertyRef Name="PROD_ID" />
+      </Principal>
+      <Dependent Role="DETALLES">
+        <PropertyRef Name="PROD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLES_POSEE_PEDIDOS">
+    <End Role="PEDIDOS" Type="houseofgModel.PEDIDOS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DETALLES" Type="houseofgModel.DETALLES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEDIDOS">
+        <PropertyRef Name="PED_ID" />
+      </Principal>
+      <Dependent Role="DETALLES">
+        <PropertyRef Name="PED_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PEDIDOS_REALIZA_USUARIOS">
+    <End Role="USUARIOS" Type="houseofgModel.USUARIOS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PEDIDOS" Type="houseofgModel.PEDIDOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="USU_ID" />
+      </Principal>
+      <Dependent Role="PEDIDOS">
+        <PropertyRef Name="USU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VALORACI_TIENEN_PRODUCTO">
+    <End Role="PRODUCTOS" Type="houseofgModel.PRODUCTOS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VALORACIONES" Type="houseofgModel.VALORACIONES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTOS">
+        <PropertyRef Name="PROD_ID" />
+      </Principal>
+      <Dependent Role="VALORACIONES">
+        <PropertyRef Name="PROD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VALORACI_REALIZAN_USUARIOS">
+    <End Role="USUARIOS" Type="houseofgModel.USUARIOS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VALORACIONES" Type="houseofgModel.VALORACIONES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="USU_ID" />
+      </Principal>
+      <Dependent Role="VALORACIONES">
+        <PropertyRef Name="USU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

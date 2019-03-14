@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="houseofgModelStoreContainer" CdmEntityContainer="houseofgEntities">
+    <EntitySetMapping Name="AMIGOS">
+      <EntityTypeMapping TypeName="houseofgModel.AMIGOS">
+        <MappingFragment StoreEntitySet="AMIGOS">
+          <ScalarProperty Name="AMI_ID" ColumnName="AMI_ID" />
+          <ScalarProperty Name="USU_ID" ColumnName="USU_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CUENTAS">
+      <EntityTypeMapping TypeName="houseofgModel.CUENTAS">
+        <MappingFragment StoreEntitySet="CUENTAS">
+          <ScalarProperty Name="CUE_ID" ColumnName="CUE_ID" />
+          <ScalarProperty Name="USU_ID" ColumnName="USU_ID" />
+          <ScalarProperty Name="TIC_ID" ColumnName="TIC_ID" />
+          <ScalarProperty Name="CUE_PASSWORD" ColumnName="CUE_PASSWORD" />
+          <ScalarProperty Name="CUE_ESTADO" ColumnName="CUE_ESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DETALLES">
+      <EntityTypeMapping TypeName="houseofgModel.DETALLES">
+        <MappingFragment StoreEntitySet="DETALLES">
+          <ScalarProperty Name="DET_ID" ColumnName="DET_ID" />
+          <ScalarProperty Name="PROD_ID" ColumnName="PROD_ID" />
+          <ScalarProperty Name="PED_ID" ColumnName="PED_ID" />
+          <ScalarProperty Name="DET_CANTIDAD" ColumnName="DET_CANTIDAD" />
+          <ScalarProperty Name="DET_PAGADO" ColumnName="DET_PAGADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PEDIDOS">
+      <EntityTypeMapping TypeName="houseofgModel.PEDIDOS">
+        <MappingFragment StoreEntitySet="PEDIDOS">
+          <ScalarProperty Name="PED_ID" ColumnName="PED_ID" />
+          <ScalarProperty Name="USU_ID" ColumnName="USU_ID" />
+          <ScalarProperty Name="PED_FECHA" ColumnName="PED_FECHA" />
+          <ScalarProperty Name="PED_ESTADO" ColumnName="PED_ESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCTOS">
+      <EntityTypeMapping TypeName="houseofgModel.PRODUCTOS">
+        <MappingFragment StoreEntitySet="PRODUCTOS">
+          <ScalarProperty Name="PROD_ID" ColumnName="PROD_ID" />
+          <ScalarProperty Name="PROD_DISPONIBLE" ColumnName="PROD_DISPONIBLE" />
+          <ScalarProperty Name="PROD_STOCK" ColumnName="PROD_STOCK" />
+          <ScalarProperty Name="PROD_IMAGEN" ColumnName="PROD_IMAGEN" />
+          <ScalarProperty Name="PROD_DESCRIPCIONCORTA" ColumnName="PROD_DESCRIPCIONCORTA" />
+          <ScalarProperty Name="PROD_PRECIO" ColumnName="PROD_PRECIO" />
+          <ScalarProperty Name="PROD_DESCRIPCIONCOMPLETA" ColumnName="PROD_DESCRIPCIONCOMPLETA" />
+          <ScalarProperty Name="PROD_NOMBRE" ColumnName="PROD_NOMBRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="houseofgModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPOS_CUENTA">
+      <EntityTypeMapping TypeName="houseofgModel.TIPOS_CUENTA">
+        <MappingFragment StoreEntitySet="TIPOS_CUENTA">
+          <ScalarProperty Name="TIC_ID" ColumnName="TIC_ID" />
+          <ScalarProperty Name="TIC_NOMBRE" ColumnName="TIC_NOMBRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIOS">
+      <EntityTypeMapping TypeName="houseofgModel.USUARIOS">
+        <MappingFragment StoreEntitySet="USUARIOS">
+          <ScalarProperty Name="USU_ID" ColumnName="USU_ID" />
+          <ScalarProperty Name="USU_NOMBRE" ColumnName="USU_NOMBRE" />
+          <ScalarProperty Name="USU_APELLIDO" ColumnName="USU_APELLIDO" />
+          <ScalarProperty Name="USU_DIRECCION" ColumnName="USU_DIRECCION" />
+          <ScalarProperty Name="USU_EMAIL" ColumnName="USU_EMAIL" />
+          <ScalarProperty Name="USU_CIUDAD" ColumnName="USU_CIUDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VALORACIONES">
+      <EntityTypeMapping TypeName="houseofgModel.VALORACIONES">
+        <MappingFragment StoreEntitySet="VALORACIONES">
+          <ScalarProperty Name="VAL_COMENTARIO" ColumnName="VAL_COMENTARIO" />
+          <ScalarProperty Name="VAL_ID" ColumnName="VAL_ID" />
+          <ScalarProperty Name="PROD_ID" ColumnName="PROD_ID" />
+          <ScalarProperty Name="USU_ID" ColumnName="USU_ID" />
+          <ScalarProperty Name="VAL_PUNTAJE" ColumnName="VAL_PUNTAJE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Perfil";
+}
+
+<h2>Perfil</h2>
+
+<div class="container">
+    <div class="row">
+         
+                <div class="col-md-3">                
+                    <br />
+                    <div class="list-group">
+                     @Html.ActionLink("Editar perfil", "../User/Edit", new { id = Session["username"] }, new { @class = "list-group-item" })
+                     @Html.ActionLink("Cambiar contraseña", "../Account/CambiarPass", new { id = Session["username"].ToString() }, new { @class = "list-group-item" })
+                     <a href="../Carrito/VerCarrito" class="list-group-item">Ver Carrito de compras</a>
+                     <a href="../RedSocial" class="list-group-item">Red Social</a>
+                     <a href="../RedSocial/HistorialVenta" class="list-group-item">Historial de compras</a>
+                     </div>
+                 </div>
+ </div>

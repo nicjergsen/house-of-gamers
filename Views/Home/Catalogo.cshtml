@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MvcHouseofg.Models.PRODUCTOS>
+@{
+    ViewBag.Title = "Catalogo";
+}
+<br />
+<br />
+  <!-- Page Content -->
+    <div class="container">
+         <!-- Page Heading/Breadcrumbs -->
+        <div class="row" >
+            <div class="col-lg-12" margin:100px>
+                <h1 class="page-header">House of G
+                
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="Index">Inicio</a></li>
+                    <li class="active">Productos</li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        
+        
+        <div class="row">
+         
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="Catalogo" class="list-group-item">Productos</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="/Imagenes/@item.PROD_IMAGEN "  width="320" height="150"  alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">@String.Format("{0:c}", item.PROD_PRECIO)</h4>
+                                <h4>@Html.ActionLink(item.PROD_NOMBRE, "Product", new { id = item.PROD_ID }) </h4>
+                                <p>@Html.DisplayFor(modelItem => item.PROD_DESCRIPCIONCORTA).</p>
+                                <p>@Html.ActionLink("Agregar al carro", "../Carrito/AgregarCarrito", new { id = item.PROD_ID }, null) </p>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                }
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>

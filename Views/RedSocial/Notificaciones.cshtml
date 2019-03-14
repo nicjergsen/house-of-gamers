@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MvcHouseofg.Models.DETALLES>
+
+@{
+    ViewBag.Title = "Notificaciones";
+}
+
+<h2>Notificaciones</h2>
+<h2>Ultimas compras echas por tu amigo</h2>
+
+<table>
+    <tr>
+        <th>
+            Producto
+        </th>
+        <th>
+            Fecha compra
+        </th>
+        <th>
+            Cantidad comprada
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRODUCTOS.PROD_NOMBRE)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.PEDIDOS.PED_FECHA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DET_CANTIDAD)
+        </td>
+       
+    </tr>
+}
+
+</table>
+
+@Html.ActionLink("Volver", "../Home/Perfil")

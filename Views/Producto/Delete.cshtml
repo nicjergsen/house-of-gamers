@@ -1,0 +1,62 @@
+﻿@model MvcHouseofg.Models.PRODUCTOS
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<fieldset>
+
+    <div class="container">
+
+        <legend>PRODUCTOS</legend>
+
+        <h3>Are you sure you want to delete this?</h3>
+
+        <div class="display-label">NOMBRE</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.PROD_NOMBRE)
+        </div>
+        <br />
+        <div class="display-label">PRECIO</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.PROD_PRECIO)
+        </div>
+        <br />
+        <div class="display-label">DISPONIBLE</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.PROD_DISPONIBLE)
+        </div>
+        <br />
+        <div class="display-label">STOCK</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.PROD_STOCK)
+        </div>
+        <br />
+        <div class="display-label">IMAGEN</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.PROD_IMAGEN)
+        </div>
+        <br />
+        <div class="display-label">DESCRIPCION CORTA</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.PROD_DESCRIPCIONCORTA)
+        </div>
+        <br />
+        <div class="display-label">DESCRIPCION COMPLETA</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.PROD_DESCRIPCIONCOMPLETA)
+        </div>
+        <br />
+        @using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+</fieldset>
+
+
+</div>
